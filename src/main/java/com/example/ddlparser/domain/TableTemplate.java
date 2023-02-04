@@ -16,10 +16,9 @@ public class TableTemplate {
 
     public TableTemplate parse(String ddl) {
         StringTokenizer st = new StringTokenizer(ddl, " ");
-        if (!st.nextToken().equalsIgnoreCase("CREATE")) {
-            throw new IllegalArgumentException("CREATE TABLE 이 아닙니다.");
-        }
-        if (!st.nextToken().equalsIgnoreCase("TABLE")) {
+        String method = st.nextToken();
+        String table = st.nextToken();
+        if (!method.equalsIgnoreCase("CREATE") || !table.equalsIgnoreCase("TABLE")) {
             throw new IllegalArgumentException("CREATE TABLE 이 아닙니다.");
         }
         this.tableName = st.nextToken();
@@ -34,9 +33,22 @@ public class TableTemplate {
             this.columns = new ColumnTemplate[columnArray.length];
             for (int i = 0; i < columnArray.length; i++) {
                 this.columns[i] = new ColumnTemplate().parse(columnArray[i]);
-                this.columns[i] = new ColumnTemplate();
             }
         }
         return this;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("CREATE TABLE ").append(this.tableName).append(" (");
+        for (int i = 0; i < this.columns.length; i++) {
+            sb.append(this.columns[i].toString());
+            if (i != this.columns.length - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append(")");
+        return sb.toString();
     }
 }

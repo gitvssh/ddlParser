@@ -7,4 +7,11 @@ import lombok.Setter;
 @Setter
 public class DDLForm {
     private String ddl;
+
+    @Override
+    public String toString() {
+        return "DDLForm{" +
+                "ddl='" + ddl + '\'' +
+                '}';
+    }
 }

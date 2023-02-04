@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ParserService {
 
-    public String parse(String ddl) {
-        TableTemplate tableTemplate = new TableTemplate();
-        TableTemplate parse = tableTemplate.parse(ddl);;
-        return parse.toString() + " parsed by service";
+    public TableTemplate parse(String ddl) {
+        return new TableTemplate().parse(ddl);
     }
 }
