@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Table Name</th>
+                <th>Column Name</th>
+                <th>Column Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="column : ${table.columns}">
+                <td th:text="${table.tableName}"></td>
+                <td th:text="${column.columnName}"></td>
+                <td th:text="${column.columnType}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">다운로드</button>
+        <textarea class="form-control" th:value="${dml}" th:text="${dml}"></textarea>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>
