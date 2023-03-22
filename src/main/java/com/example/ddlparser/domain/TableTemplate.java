@@ -3,6 +3,7 @@ package com.example.ddlparser.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,13 +56,13 @@ public class TableTemplate {
         return sb.toString();
     }
 
-    public String makeDml() {
+    public String makeDml(ArrayList<String> testData) {
         StringBuilder sb = new StringBuilder();
-        makeDmlSingleLine(sb);
+        makeDmlSingleLine(sb, testData);
         return sb.toString();
     }
 
-    private void makeDmlSingleLine(StringBuilder sb) {
+    private void makeDmlSingleLine(StringBuilder sb, ArrayList<String> testData) {
         sb.append("INSERT INTO ").append(this.tableName).append(" (");
         for (int i = 0; i < this.columns.length; i++) {
             sb.append(this.columns[i].getColumnName());
@@ -71,7 +72,7 @@ public class TableTemplate {
         }
         sb.append(") VALUES (");
         for (int i = 0; i < this.columns.length; i++) {
-            sb.append("?");
+            sb.append(testData.get(i));
             if (i != this.columns.length - 1) {
                 sb.append(", ");
             }

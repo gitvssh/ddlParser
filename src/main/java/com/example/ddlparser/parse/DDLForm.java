@@ -8,6 +8,8 @@ import lombok.Setter;
 public class DDLForm {
     private String ddl;
 
+    private int size;
+
     @Override
     public String toString() {
         return "DDLForm{" +
