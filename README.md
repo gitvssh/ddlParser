@@ -55,6 +55,7 @@ If you want to contribute to this project, you can:
 이 프로젝트에 기여하고 싶으시다면 아래의 방법을 이용해주세요.
 <br>
 <br>
+
 - Issue를 열어 버그를 리포트하거나 새로운 기능을 제안해주세요.
 - 리포지토리를 Fork하고 pull reqest을 보내주세요.
 
